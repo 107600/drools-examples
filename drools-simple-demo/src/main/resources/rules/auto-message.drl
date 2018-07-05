@@ -1,0 +1,28 @@
+package rules
+
+import com.neo.drools.entity.AutoMessage
+
+rule "sendMessage"
+    no-loop true
+    lock-on-active true
+    salience 2
+    when
+        $m : AutoMessage((state == true) && (gameId == 5934 || gameId == 5935) &&
+                         (System.currentTimeMillis() - lastSendDate > 1000*60*60*24*15)&&
+                         (System.currentTimeMillis() - lastLoginDate > 1000*60*60*24*7))
+    then
+        $m.setSend(true);
+        update($m);
+end
+
+rule "cancelMessage"
+    no-loop true
+    lock-on-active true
+    salience 1
+    when
+        $m : AutoMessage((state == false) && (gameId != 5934 && gameId != 5935) && (System.currentTimeMillis() - lastSendDate > 1000*60*60*24*15)&&(System.currentTimeMillis() - lastLoginDate > 1000*60*60*24*7))
+    then
+        $m.setSend(false);
+        update($m);
+end
+
