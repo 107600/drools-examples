@@ -1,17 +1,14 @@
 package com.neo.drools;
 
 import com.neo.drools.entity.AutoMessage;
-import com.neo.drools.entity.User;
-import org.drools.core.util.DateUtils;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+
 
 public class DroolsScoreExample {
 
